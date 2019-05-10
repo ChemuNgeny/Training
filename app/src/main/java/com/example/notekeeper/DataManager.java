@@ -8,7 +8,7 @@ public class DataManager {
     private static DataManager ourInstance = null;
 
     private List<CourseInfo> mCourses = new ArrayList<>();
-    private List<NoteInfo> mNotes = new ArrayList<>();
+    private ArrayList<NoteInfo> mNotes = new ArrayList<>();
 
     public static DataManager getInstance(){
         if (ourInstance == null){
@@ -31,11 +31,11 @@ public class DataManager {
         this.mCourses = mCourses;
     }
 
-    public List<NoteInfo> getmNotes() {
+    public ArrayList<NoteInfo> getmNotes() {
         return mNotes;
     }
 
-    public void setmNotes(List<NoteInfo> mNotes) {
+    public void setmNotes(ArrayList<NoteInfo> mNotes) {
         this.mNotes = mNotes;
     }
 

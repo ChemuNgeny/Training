@@ -2,10 +2,11 @@ package com.example.notekeeper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         if (isNewNote){
             creatNewNote();
         }else {
+//            Log.i(TAG, "readDisplayStateValues: ");
             DataManager.getInstance().getmNotes().get(position);
         }
 
@@ -160,9 +162,34 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_cancel){
             isCancelling = true;
             finish();
+        } else if (id == R.id.action_next){
+            movement();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_next);
+        int lastNoteIndex = DataManager.getInstance().getmNotes().size() - 1;//disabling the next note menu item
+        item.setEnabled(notePosition < lastNoteIndex);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    private void movement() {
+        saveNote();
+        ++notePosition;
+        note = DataManager.getInstance().getmNotes().get(notePosition);
+        saveOriginalNoteValues();
+
+        displayNote(spinnerCourses, etTitle, etText);
+        isValidateOptionsMenu();
+
+    }
+
+    private void isValidateOptionsMenu() {
+
     }
 
     private void sendEmail() {
