@@ -8,10 +8,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NoteListActivity extends AppCompatActivity {
+
+    private ArrayAdapter<NoteInfo> mAdapterNotes;
 
     private NoteRecyclerAdapter noteRecyclerAdapter;
 
@@ -26,7 +30,7 @@ public class NoteListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(NoteListActivity.this, MainActivity.class));
+                startActivity(new Intent(NoteListActivity.this, NoteActivity.class));
             }
         });
 
@@ -42,8 +46,8 @@ public class NoteListActivity extends AppCompatActivity {
     private void initializeDisplayContent() {
 //        final ListView listNote = findViewById(R.id.list_note);
 //
-//        List<NoteInfo> notes = DataManager.getInstance().getmNotes();
-//        ArrayAdapter<NoteInfo> adapterNotes = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, notes);
+//        List<NoteInfo> mCourses = DataManager.getInstance().getmNotes();
+//        ArrayAdapter<NoteInfo> adapterNotes = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mCourses);
 //        listNote.setAdapter(adapterNotes);
 //        listNote.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -59,7 +63,7 @@ public class NoteListActivity extends AppCompatActivity {
         final LinearLayoutManager notesLayoutManager = new LinearLayoutManager(this);
         recyclerNotes.setLayoutManager(notesLayoutManager);
 
-        ArrayList<NoteInfo> notes = DataManager.getInstance().getmNotes();
+        List<NoteInfo> notes = DataManager.getInstance().getmNotes();
         noteRecyclerAdapter = new NoteRecyclerAdapter(this, notes);
         recyclerNotes.setAdapter(noteRecyclerAdapter);
     }

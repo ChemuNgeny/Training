@@ -8,7 +8,7 @@ public class DataManager {
     private static DataManager ourInstance = null;
 
     private List<CourseInfo> mCourses = new ArrayList<>();
-    private ArrayList<NoteInfo> mNotes = new ArrayList<>();
+    private List<NoteInfo> mNotes = new ArrayList<>();
 
     public static DataManager getInstance(){
         if (ourInstance == null){
@@ -31,7 +31,7 @@ public class DataManager {
         this.mCourses = mCourses;
     }
 
-    public ArrayList<NoteInfo> getmNotes() {
+    public List<NoteInfo> getmNotes() {
         return mNotes;
     }
 
@@ -87,5 +87,19 @@ public class DataManager {
 
     public CourseInfo getmCourses(String originalNoteCourseId) {
         return null;
+    }
+
+    public void initializeExampleNote() {
+
+    }
+
+    public int createNewNote(CourseInfo course, String noteTitle, String noteText) {
+        int index = createNewNote();
+        NoteInfo note = getmNotes().get(index);
+        note.setmCourses(course);
+        note.setmTitle(noteTitle);
+        note.setmText(noteText);
+
+        return index;
     }
 }
