@@ -26,7 +26,7 @@ import java.util.List;
 public class NavActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NoteRecyclerAdapter noteRecyclerAdapter;
     private LinearLayoutManager notesLayoutManager;
-    private View recyclerItems;
+    private RecyclerView recyclerItems;
     private GridLayoutManager courseLayoutManager;
     private CourseRecyclerAdapter courseRecyclerAdapter;
     private NoteKeeperOpenHelper mDbOpenHelper;
